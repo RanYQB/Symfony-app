@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RH Conseil - Bienvenue !{% endblock %}
+
+ {% block stylesheets %}
+     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+ {% endblock %}
+
+{% block body %}
+
+
+<div class="mainContainer">
+    <h1>RH Conseil</h1>
+    <div class="buttonContainer">
+        <input type="button" class="choice-btn" value="Vous êtes candidat"/>
+        <input type="button" class="choice-btn" value="Vous êtes recruteur"/>
+    </div>
+
+</div>
+{% endblock %}
