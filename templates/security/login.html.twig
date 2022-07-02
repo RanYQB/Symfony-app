@@ -8,6 +8,7 @@
  {% endblock %}
 
 {% block body %}
+    <div class="page-container">
     <section class="connexion-form">
 
             <form method="post">
@@ -17,12 +18,12 @@
 
                 {% if app.user %}
                     <div class="mb-3">
-                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        Vous êtes connecté(e) en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Me déconnecter</a>
                     </div>
                 {% endif %}
 
                 <h1 class="h3 mb-3 font-weight-normal">Vous avez déjà un compte ?</h1>
-                <h2>Connectez-vous</h2>
+                <h2>Connexion</h2>
                 <div class="input-div">
                     <label for="inputEmail">Email</label>
                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
@@ -52,5 +53,6 @@
             </form>
 
     </section>
+    </div>
 
 {% endblock %}

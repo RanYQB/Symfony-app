@@ -1,12 +1,22 @@
+.page-container{
+    background-image: url(../pictures/Lyon3.jpg);
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .connexion-form{
     display: block;
+    position: absolute;
+    background-color: white;
     max-width: 30vw;
-    border: solid 1px #ecf0f1;
-    box-shadow: 0 0 10px 2px #ecf0f1;
-    padding: 2rem 1rem;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50vh;
+    border: solid 1px #bdc3c7;
+    box-shadow: 2px 2px 4px #ecf0f1;
+    padding: 3rem 2rem;
+    top: 50vh;
     transform: translateY(-50%);
 }
 
@@ -17,6 +27,7 @@
 .input-div{
     display: flex;
     flex-direction: column;
+    padding: 1rem 0;
 }
 
 form{
@@ -31,9 +42,13 @@ h1,h2{
     text-transform: uppercase;
 }
 
+h1{
+    color: #f1c40f;
+}
+
 input{
-    line-height: 2rem;
-    width: 20vw;
+    line-height: 2.5rem;
+    width: 25vw;
 }
 
 .connexion-btn{
