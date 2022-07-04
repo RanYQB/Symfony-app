@@ -14,9 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 
+
+#[Route('/inscription', name: 'app_register_')]
 class RegistrationController extends AbstractController
 {
-    #[Route('/inscription/candidat', name: 'app_register_candidate')]
+    #[Route('/candidat', name: 'candidate')]
     public function registerCandidate(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppLoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
@@ -25,7 +27,7 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            $user->setRoles((array)'ROLE_CANDIDAT');
+            $user->setRoles((array)'ROLE_CANDIDATE');
             $user->setPassword(
             $userPasswordHasher->hashPassword(
                     $user,
@@ -50,7 +52,7 @@ class RegistrationController extends AbstractController
     }
 
 
-    #[Route('/inscription/recruteur', name: 'app_register_recruiter')]
+    #[Route('/recruteur', name: 'recruiter')]
     public function registerRecruiter(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppLoginAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();

@@ -1,0 +1,35 @@
+.link-bar{
+    height: 9vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    background-color: #3498db;
+    color: white;
+    padding: 0 1.3rem;
+}
+
+.links-container{
+    display: flex;
+    flex-direction: row;
+    width: 50vw;
+    align-items: center;
+    justify-content: left;
+}
+
+
+.link-item{
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+.link-item:hover{
+    color: #f1c40f;
+}
+
+
+.list-item{
+    list-style: none;
+    padding: 0 1.3rem;
+}
