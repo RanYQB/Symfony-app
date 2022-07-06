@@ -5,11 +5,15 @@
 
  {% block stylesheets %}
      {{ parent() }}
-     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+     <link rel="stylesheet" href="{{asset('assets/css/adminBar.css')}}">
  {% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+    {% include "_partials/_admin_bar.html.twig"%}
+    {% else %}
     {% include "_partials/_nav.html.twig" %}
     {% include "_partials/_bar.html.twig" %}
+    {% endif %}
 
 {% endblock %}

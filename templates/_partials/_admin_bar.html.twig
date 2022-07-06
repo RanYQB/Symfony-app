@@ -1,0 +1,18 @@
+{% if is_granted('ROLE_ADMIN') %}
+<div class="menu-panel">
+    <div class="menu-content">
+        <div class="menu-title">
+            <h2 class="menu-main-title">RH Conseil</h2>
+            <h3 class="menu-subtitle">Administrateur</h3>
+        </div>
+        <ul class="menu-container">
+            <li class="list-item-consultant"><a class="link-consultants"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="consultant bi bi-person-lines-fill" viewBox="0 0 16 16">
+                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+                    </svg>Consultants</a></li>
+        </ul>
+        <div class="logout-div">
+            <a class="link-logout" href="{{ path('app_logout') }}">Se déconnecter</a>
+        </div>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RH Conseil - Profil{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     <link rel="stylesheet" href="{{asset('assets/css/profile.css')}}">
+ {% endblock %}
+
+{% block body %}
+    {% include "_partials/_nav.html.twig" %}
+    {% include "_partials/_bar.html.twig" %}
+    <div class="profile-content">
+        <div class="profile-card">
+    {% if is_granted('ROLE_CANDIDATE') %}
+
+    {% endif %}
+
+        </div>
+    </div>
+
+
+{% endblock %}

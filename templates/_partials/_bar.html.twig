@@ -2,13 +2,13 @@
 
         <ul class="links-container">
             {% if is_granted('ROLE_CANDIDATE') %}
-                <li class="list-item"><a class="link-item">Mon profil</a></li>
-                <li class="list-item"><a class="link-item">Mes candidatures</a></li>
-                <li class="list-item"><a class="link-item">Consulter les offres d'emploi</a></li>
+                <li class="list-item"><a class="link-item" href="{{ path('app_profile') }}">Mon profil</a></li>
+                <li class="list-item"><a class="link-item" href="#">Mes candidatures</a></li>
+                <li class="list-item"><a class="link-item" href="#">Consulter les offres d'emploi</a></li>
             {% elseif is_granted('ROLE_RECRUITER') %}
-                <li class="list-item"><a class="link-item">Profil</a></li>
-                <li class="list-item"><a class="link-item">Offres</a></li>
-                <li class="list-item"><a class="link-item">Candidatures reçues</a></li>
+                <li class="list-item"><a class="link-item" href="{{ path('app_profile') }}">Profil</a></li>
+                <li class="list-item"><a class="link-item" href="#">Offres</a></li>
+                <li class="list-item"><a class="link-item" href="#">Candidatures reçues</a></li>
             {% endif %}
         </ul>
 

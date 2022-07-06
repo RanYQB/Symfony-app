@@ -19,9 +19,10 @@
 
 .link-item{
     text-decoration: none;
+    color: white;
     cursor: pointer;
     font-size: 1rem;
-    font-weight: bolder;
+    font-weight: 300;
 }
 
 .link-item:hover{
@@ -32,4 +33,5 @@
 .list-item{
     list-style: none;
     padding: 0 1.3rem;
+    color: white;
 }
