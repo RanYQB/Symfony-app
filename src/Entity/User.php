@@ -26,9 +26,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\OneToOne(targetEntity: Candidate::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $candidate;
+
 
     #[ORM\Column(type: 'datetime_immutable', options:['default'=>'CURRENT_TIMESTAMP'])]
     private $created_at;
@@ -44,17 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getCandidate(): ?Candidate
-    {
-        return $this->candidate;
-    }
 
-    public function setCandidate(Candidate $candidate): self
-    {
-        $this->candidate = $candidate;
-
-        return $this;
-    }
 
 
     public function getEmail(): ?string

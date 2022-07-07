@@ -24,6 +24,9 @@ class Application
     #[ORM\JoinColumn(nullable: false)]
     private $offer;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isSent;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +64,18 @@ class Application
     public function setOffer(?Offer $offer): self
     {
         $this->offer = $offer;
+
+        return $this;
+    }
+
+    public function isIsSent(): ?bool
+    {
+        return $this->isSent;
+    }
+
+    public function setIsSent(bool $isSent): self
+    {
+        $this->isSent = $isSent;
 
         return $this;
     }

@@ -34,6 +34,9 @@ class Offer
     #[ORM\JoinColumn(nullable: false)]
     private $recruiter;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isPublished;
+
     public function __construct()
     {
         $this->application = new ArrayCollection();
@@ -130,6 +133,18 @@ class Offer
     public function setRecruiter(?Recruiter $recruiter): self
     {
         $this->recruiter = $recruiter;
+
+        return $this;
+    }
+
+    public function isIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
 
         return $this;
     }
