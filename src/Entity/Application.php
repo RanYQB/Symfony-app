@@ -2,23 +2,23 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\CreatedAtTrait;
 use App\Repository\ApplicationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ApplicationRepository::class)]
 class Application
 {
+    use CreatedAtTrait;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $created_at;
-
-    #[ORM\ManyToOne(targetEntity: Candidate::class, inversedBy: 'applications')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'applications')]
     #[ORM\JoinColumn(nullable: false)]
-    private $candidate;
+    private $user;
 
     #[ORM\ManyToOne(targetEntity: Offer::class, inversedBy: 'application')]
     #[ORM\JoinColumn(nullable: false)]
@@ -32,26 +32,14 @@ class Application
         return $this->id;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getUser(): ?User
     {
-        return $this->created_at;
+        return $this->user;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setUser(?User $user): self
     {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    public function getCandidate(): ?Candidate
-    {
-        return $this->candidate;
-    }
-
-    public function setCandidate(?Candidate $candidate): self
-    {
-        $this->candidate = $candidate;
+        $this->user = $user;
 
         return $this;
     }
@@ -78,5 +66,10 @@ class Application
         $this->isSent = $isSent;
 
         return $this;
+    }
+
+    public function __construct()
+    {
+        $this->created_at = new \DateTimeImmutable();
     }
 }

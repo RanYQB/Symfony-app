@@ -21,9 +21,11 @@ class Candidate
     #[ORM\Column(type: 'string', length: 100)]
     private $firstname;
 
+
     #[ORM\OneToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
+
 
     #[ORM\OneToOne(mappedBy: 'candidate', targetEntity: Resume::class, cascade: ['persist', 'remove'])]
     private $resume;

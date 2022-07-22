@@ -14,7 +14,6 @@ class CandidateType extends AbstractType
         $builder
             ->add('lastname')
             ->add('firstname')
-            ->add('user')
             ->add('resume')
         ;
     }
