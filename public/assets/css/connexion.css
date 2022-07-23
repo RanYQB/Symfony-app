@@ -1,5 +1,5 @@
 .page-container{
-    background-image: url(../pictures/Lyon3.jpg);
+    background-image: url(../pictures/lyon-conf-5.jpg);
     background-size: cover;
     height: 100vh;
     width: 100vw;
@@ -11,18 +11,19 @@
 .connexion-form{
     display: block;
     position: absolute;
-    background-color: white;
     max-width: 30vw;
-    border: solid 1px #bdc3c7;
-    box-shadow: 2px 2px 4px #ecf0f1;
     padding: 3rem 2rem;
     top: 50vh;
     transform: translateY(-50%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
 }
 
-.connexion-form:hover{
-    box-shadow: 0 0 10px 2px #bdc3c7;
-}
+
 
 .input-div{
     display: flex;
@@ -39,11 +40,12 @@ form{
 }
 
 h1,h2{
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 h1{
-    color: #f1c40f;
+    color: white;
+    text-align: center;
 }
 
 input{
