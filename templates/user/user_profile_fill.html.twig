@@ -10,13 +10,11 @@
     {% if app.user %}
         {% if is_granted('ROLE_CANDIDATE') %}
             <div class="profil-container">
-                    <div>Bienvenue</div>
-                    <div class="card text-center p-4">
-                        <div class="card-body">
-                            <p class="card-text"> Pour accéder aux offres de nos partenaires. Merci de compléter votre profil candidat.</p>
-                            <a href="{{ path('app_user_complete_profile') }}" class="btn btn-primary">Compléter mon profil</a>
-                        </div>
-                    </div>
+                {{ form_start(profileFillForm) }}
+                {{ form_row(profileFillForm.lastname) }}
+                {{ form_row(profileFillForm.firstname) }}
+                <button type="submit" class="btn">Enregistrer</button>
+                {{ form_end(profileFillForm) }}
             </div>
         {% elseif is_granted('ROLE_RECRUITER') %}
             <div class="profil-container">
