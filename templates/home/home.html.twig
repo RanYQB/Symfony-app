@@ -3,6 +3,7 @@
 {% block title %}RH Conseil - Bienvenue !{% endblock %}
 
  {% block stylesheets %}
+     {{ parent() }}
      <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
      <link rel="stylesheet" href="{{asset('assets/css/home.css')}}">
  {% endblock %}

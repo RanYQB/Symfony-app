@@ -1,37 +1,19 @@
-.link-bar{
-    height: 6vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    background-color: #3498db;
-    color: white;
-    padding: 0 1.3rem;
-}
-
-.links-container{
-    display: flex;
-    flex-direction: row;
-    width: 50vw;
-    align-items: center;
-    justify-content: left;
-}
-
-
-.link-item{
+.link-logout{
+    border: 1px solid white;
+    padding: 0.7rem 1.4rem;
     text-decoration: none;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 300;
+
 }
 
-.link-item:hover{
-    color: #f1c40f;
+.link-logout:hover{
+    background-color: #3360AB;
+}
+
+.navbar-text a{
+    color: white;
 }
 
 
-.list-item{
-    list-style: none;
-    padding: 0 1.3rem;
-    color: white;
+#navbar{
+    background-color: #06283D;
 }

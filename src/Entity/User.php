@@ -29,6 +29,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
+    #[ORM\OneToOne(targetEntity: Candidate::class, cascade: ['persist', 'remove'])]
+    private $Candidate;
+
+    #[ORM\OneToOne(targetEntity: Recruiter::class, cascade: ['persist', 'remove'])]
+    private $Recruiter;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -102,6 +108,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getCandidate(): ?Candidate
+    {
+        return $this->Candidate;
+    }
+
+    public function setCandidate(?Candidate $Candidate): self
+    {
+        $this->Candidate = $Candidate;
+
+        return $this;
+    }
+
+    public function getRecruiter(): ?Recruiter
+    {
+        return $this->Recruiter;
+    }
+
+    public function setRecruiter(?Recruiter $Recruiter): self
+    {
+        $this->Recruiter = $Recruiter;
+
+        return $this;
     }
 
 }

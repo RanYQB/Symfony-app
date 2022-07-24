@@ -52,11 +52,11 @@ class AppLoginAuthenticator extends AbstractLoginFormAuthenticator
         $user = $token->getUser();
 
         if (in_array('ROLE_CANDIDATE', $user->getRoles())) {
-            return new RedirectResponse($this->urlGenerator->generate('app_candidate_index'));
+            return new RedirectResponse($this->urlGenerator->generate('app_user'));
         }
 
         if (in_array('ROLE_RECRUITER', $user->getRoles())) {
-            return new RedirectResponse($this->urlGenerator->generate('app_recruiter'));
+            return new RedirectResponse($this->urlGenerator->generate('app_user'));
         }
 
         if (in_array('ROLE_CONSULTANT', $user->getRoles())) {
