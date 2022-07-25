@@ -1,19 +1,37 @@
 .profil-container{
-    height: 50vh;
-    width: 100vw;
+    min-height: 89vh;
+    width: 80vw;
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 50vh;
-    transform: translateY(-50%);
-
+    top: 11vh;
+    left: 20vw;
 }
 
 .card{
-    width: 30vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    width: 40vw;
+    min-height: 40vh;
+}
+
+.infos{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.infos span{
+    font-weight: bold;
+}
+
+.modify{
+    width: 30%;
+    margin: auto;
+    background-color: #1363DF;
+    border: 1px solid #3567B8;
+    color: white;
+}
+
+.modify:hover{
+    color: white;
+    background-color: #3567B8;
 }

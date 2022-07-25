@@ -1,0 +1,32 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/sideBar.css')}}">
+{% endblock %}
+
+<div class="side-bar">
+    <ul class="sidebar-ul">
+        {% if is_granted('ROLE_CANDIDATE') %}
+            <li class="sidebar-li">
+                <a class="sidebar-a"  href="#">Profil</a>
+            </li>
+            <li class="sidebar-li">
+                <a class="sidebar-a"  href="#">Candidatures</a>
+            </li>
+            <li class="sidebar-li">
+                <a class="sidebar-a"  href="#">Notifications</a>
+            </li>
+        {% elseif is_granted('ROLE_RECRUITER') %}
+            <li class="sidebar-li">
+                <a class="sidebar-a"  href="#">Profil Entreprise</a>
+            </li>
+            <li class="sidebar-li">
+                <a class="sidebar-a"  href="#">Offres publiées</a>
+            </li>
+            <li class="sidebar-li">
+                <a class="sidebar-a"  href="{{ path('app_recruiter_new_offer') }}">Ajouter une offre</a>
+            </li>
+            <li class="sidebar-li">
+                <a class="sidebar-a"  href="#">Notifications</a>
+            </li>
+        {% endif %}
+    </ul>
+</div>

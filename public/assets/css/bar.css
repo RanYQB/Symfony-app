@@ -16,4 +16,6 @@
 
 #navbar{
     background-color: #06283D;
+    position: fixed;
+    width: 100vw;
 }

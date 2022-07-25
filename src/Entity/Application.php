@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\CreatedAtTrait;
+use App\Entity\Traits\SlugTrait;
 use App\Repository\ApplicationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Application
 {
     use CreatedAtTrait;
+    use SlugTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

@@ -1,0 +1,27 @@
+.side-bar{
+    position: fixed;
+    left: 0;
+    top: 10.6vh;
+    width: 20vw;
+    min-height: 89.4vh;
+    background-color: #e8f5fd;
+    border-right: 1px solid #a1d6f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 20%;
+}
+
+.sidebar-li{
+    list-style: none;
+    width: inherit;
+    line-height: 2rem;
+    padding: .3rem;
+    cursor: pointer;
+}
+
+.sidebar-a{
+    text-decoration: none;
+    color: #06283D;
+
+}

@@ -14,20 +14,14 @@
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 {% if is_granted('ROLE_CANDIDATE') %}
                                         <li class="nav-item">
-                                                <a class="nav-link active" aria-current="page" href="#">Profil</a>
+                                                <a class="nav-link active" aria-current="page" href="{{ path('app_user') }}">Profil</a>
                                         </li>
                                         <li class="nav-item">
-                                                <a class="nav-link" href="#">Candidatures</a>
-                                        </li>
-                                        <li class="nav-item">
-                                                <a class="nav-link" href="#">Consulter les offres</a>
+                                                <a class="nav-link" href="{{ path('app_offer') }}">Consulter les offres</a>
                                         </li>
                                 {% elseif is_granted('ROLE_RECRUITER') %}
                                         <li class="nav-item">
-                                                <a class="nav-link active" aria-current="page" href="#">Profil</a>
-                                        </li>
-                                        <li class="nav-item">
-                                                <a class="nav-link" href="#">Offres</a>
+                                                <a class="nav-link active" aria-current="page" href="{{ path('app_user') }}">Profil</a>
                                         </li>
                                         <li class="nav-item">
                                                 <a class="nav-link" href="#">Candidatures reçues</a>

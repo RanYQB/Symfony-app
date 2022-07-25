@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RH Conseil - nouvelle offre{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/user.css')}}">
+{% endblock %}
+
+{% block body %}
+    {% include "_partials/_bar.html.twig" %}
+    {% include "_partials/_side_bar.html.twig" %}
+    {% if app.user %}
+        {% if is_granted('ROLE_RECRUITER') %}
+            <div class="profil-container">
+                {% if app.user.recruiter %}
+                    {{ form_start(offerForm) }}
+                    {{ form_row(offerForm.title) }}
+                    {{ form_row(offerForm.location) }}
+                    {{ form_row(offerForm.salary) }}
+                    {{ form_row(offerForm.description) }}
+                    <button type="submit" class="btn">Publier</button>
+                    {{ form_end(offerForm) }}
+                {% endif %}
+            </div>
+        {% endif %}
+    {% else %}
+    {% endif %}
+{% endblock %}

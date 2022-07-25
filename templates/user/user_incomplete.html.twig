@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RH Conseil - menu{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/user.css')}}">
+{% endblock %}
+
+{% block body %}
+    {% include "_partials/_bar.html.twig" %}
+    {% include "_partials/_side_bar.html.twig" %}
+    {% if app.user %}
+        {% if is_granted('ROLE_CANDIDATE') %}
+            <div class="profil-container">
+                    <div class="card text-center p-4">
+                        <div class="card-body">
+                            <p class="card-text"> Pour accéder aux offres de nos partenaires. Merci de compléter votre profil candidat.</p>
+                            <a href="{{ path('app_user_complete_profile') }}" class="btn btn-primary">Compléter mon profil</a>
+                        </div>
+                    </div>
+            </div>
+        {% elseif is_granted('ROLE_RECRUITER') %}
+            <div class="profil-container">
+                    <div class="card text-center p-4">
+                        <div class="card-body">
+                            <p class="card-text"> Pour pouvoir poster vos offres d'emploi. Merci de compléter votre profil recruteur.</p>
+                            <a href="{{ path('app_user_complete_profile') }}" class="btn btn-primary">Compléter votre fiche entreprise</a>
+                        </div>
+                    </div>
+            </div>
+        {% endif %}
+    {% else %}
+    {% endif %}
+{% endblock %}

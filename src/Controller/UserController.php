@@ -3,29 +3,74 @@
 namespace App\Controller;
 
 use App\Entity\Candidate;
+use App\Entity\Offer;
 use App\Entity\Recruiter;
 use App\Entity\User;
 use App\Form\CandidateType;
+use App\Form\OfferType;
 use App\Form\RecruiterType;
 use App\Repository\CandidateRepository;
+use App\Repository\RecruiterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
 
 class UserController extends AbstractController
 {
-    private $security;
 
-    #[Route('/profil', name: 'app_user')]
+
+    #[Route('/profil/profil-incomplet', name: 'app_user_incomplete_profil')]
     public function index(): Response
     {
-        return $this->render('user/user.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
+        if($this->getUser()->getCandidate()){
+            $this->redirectToRoute('app_user');
+        } elseif ($this->getUser()->getRecruiter()){
+            $this->redirectToRoute('app_user');
+        }
+        return $this->render('user/user_incomplete.html.twig');
     }
+
+    #[Route('/profil', name: 'app_user')]
+    public function profile(CandidateRepository $candidateRepository, RecruiterRepository $recruiterRepository): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $user = $this->getUser();
+
+        if($this->isGranted('ROLE_CANDIDATE'))
+        {
+            if($user->getCandidate() === null){
+                return $this->redirectToRoute('app_user_incomplete_profil');
+            }
+        } elseif ($this->isGranted('ROLE_RECRUITER')){
+            if($user->getRecruiter() === null){
+                return $this->redirectToRoute('app_user_incomplete_profil');
+            }
+        }
+
+
+        if($this->isGranted('ROLE_CANDIDATE')){
+            $candidate = $candidateRepository->find($this->getUser()->getCandidate());
+            $options = [
+                'candidate' => $candidate,
+            ];
+
+        } elseif ($this->isGranted('ROLE_RECRUITER')){
+            $recruiter = $recruiterRepository->find($this->getUser()->getRecruiter());
+            $options = [
+                'recruiter' => $recruiter,
+            ];
+        };
+
+        return $this->render('user/user.html.twig', $options);
+    }
+
+
+
 
     #[Route('/profil/completer-profil', name: 'app_user_complete_profile')]
     public function completeProfile(Request $request, EntityManagerInterface $entityManager): Response
@@ -51,10 +96,6 @@ class UserController extends AbstractController
                 return $this->redirectToRoute('app_user');
             };
 
-
-
-
-
         } elseif ($this->isGranted('ROLE_RECRUITER')) {
             $recruiter = new Recruiter();
 
@@ -63,8 +104,17 @@ class UserController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
 
+                $recruiter->setUser($this->getUser());
                 $entityManager->persist($recruiter);
                 $entityManager->flush();
+
+                $user = $this->getUser();
+                $user->setRecruiter($recruiter);
+
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_user');
             };
         };
 
@@ -72,4 +122,36 @@ class UserController extends AbstractController
             'profileFillForm' => $form->createView(),
         ]);
     }
+
+    public function __construct(private SluggerInterface $slugger){}
+
+    #[Route('/recruteur/ajouter-une-offre', name: 'app_recruiter_new_offer')]
+    public function AddOffer(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        if($this->isGranted('ROLE_RECRUITER')){
+            $offer = new Offer();
+
+            $form = $this->createForm(OfferType::class, $offer);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $offer->setIsPublished(false);
+                $offer->setSlug($this->slugger->slug($offer->getTitle())->lower());
+                $offer->setRecruiter($this->getUser()->getRecruiter());
+                $entityManager->persist($offer);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_user');
+            };
+
+        } else {
+            $this->redirectToRoute('app-user');
+        }
+        return $this->render('user/add_offer.html.twig',[
+            'offerForm' => $form->createView(),
+    ]);
+    }
+
+
 }

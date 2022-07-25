@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RH Conseil - menu{% endblock %}
+{% block title %}RH Conseil - compléter votre profil{% endblock %}
 {% block stylesheets %}
     <link rel="stylesheet" href="{{asset('assets/css/user.css')}}">
 {% endblock %}
 
 {% block body %}
     {% include "_partials/_bar.html.twig" %}
+    {% include "_partials/_side_bar.html.twig" %}
     {% if app.user %}
         {% if is_granted('ROLE_CANDIDATE') %}
             <div class="profil-container">
@@ -18,13 +19,13 @@
             </div>
         {% elseif is_granted('ROLE_RECRUITER') %}
             <div class="profil-container">
-                    <div>Bienvenue</div>
-                    <div class="card text-center p-4">
-                        <div class="card-body">
-                            <p class="card-text"> Pour pouvoir poster vos offres d'emploi. Merci de compléter votre profil recruteur.</p>
-                            <a href="{{ path('app_user_complete_profile') }}" class="btn btn-primary">Compléter votre fiche entreprise</a>
-                        </div>
-                    </div>
+                {{ form_start(profileFillForm) }}
+                {{ form_row(profileFillForm.name) }}
+                {{ form_row(profileFillForm.address) }}
+                {{ form_row(profileFillForm.zipcode) }}
+                {{ form_row(profileFillForm.city) }}
+                <button type="submit" class="btn">Enregistrer</button>
+                {{ form_end(profileFillForm) }}
             </div>
         {% endif %}
     {% else %}

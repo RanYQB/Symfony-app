@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OfferController!{% endblock %}
+
+{% block body %}
+<div class="offers-container">
+    {% for offer in offers %}
+        <div class="offer-container">
+            <h3>{{ offer.title }}</h3>
+            <p>Lieux : {{ offer.location }}</p>
+            <p>Salaire : {{ offer.salary }} € annuels</p>
+            <p>Lieux : <br/>{{ offer.description }}</p>
+        </div>
+</div>
+{% endblock %}

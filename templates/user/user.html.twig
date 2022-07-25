@@ -7,30 +7,36 @@
 
 {% block body %}
     {% include "_partials/_bar.html.twig" %}
+    {% include "_partials/_side_bar.html.twig" %}
     {% if app.user %}
         {% if is_granted('ROLE_CANDIDATE') %}
             <div class="profil-container">
             {% if app.user.candidate %}
-                <div>Bienvenue</div>
-            {% else %}
-                <div class="card text-center p-4">
-                    <div class="card-body">
-                        <p class="card-text"> Pour accéder aux offres de nos partenaires. Merci de compléter votre profil candidat.</p>
-                        <a href="{{ path('app_user_complete_profile') }}" class="btn btn-primary">Compléter mon profil</a>
+
+                <div class="card text-start p-4 ">
+                    <h5 class="card-title ">Bonjour {{ candidate.firstname }},</h5>
+                    <h6 >Bienvenue sur ton espace personnel</h6>
+                    <div class="infos py-4">
+                        <p><span>Nom :</span> {{ candidate.lastname }}</p>
+                        <p><span>Prénom :</span> {{ candidate.firstname }}</p>
                     </div>
+                    <a class="btn px-4 modify" role="button" >Modifier</a>
                 </div>
             {% endif %}
             </div>
         {% elseif is_granted('ROLE_RECRUITER') %}
             <div class="profil-container">
                 {% if app.user.recruiter %}
-                    <div>Bienvenue</div>
-                {% else %}
-                    <div class="card text-center p-4">
-                        <div class="card-body">
-                            <p class="card-text"> Pour pouvoir poster vos offres d'emploi. Merci de compléter votre profil recruteur.</p>
-                            <a href="{{ path('app_user_complete_profile') }}" class="btn btn-primary">Compléter votre fiche entreprise</a>
+                    <div class="card text-start p-4 ">
+                        <h2 class="card-title ">{{ recruiter.name }}</h2>
+                        <div class="infos py-4">
+                            <p><span>Nom :</span> {{ recruiter.name }}</p>
+                            <p><span>Adresse :</span> {{ recruiter.address }}</p>
+                            <p><span>Code postal :</span> {{ recruiter.zipcode }}</p>
+                            <p><span>Ville :</span> {{ recruiter.city }}</p>
+
                         </div>
+                        <a class="btn px-4 modify" role="button" >Modifier</a>
                     </div>
                 {% endif %}
             </div>
