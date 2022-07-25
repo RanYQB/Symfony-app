@@ -1,8 +1,13 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/offers.css')}}">
+{% endblock %}
+
 {% block title %}Hello OfferController!{% endblock %}
 
 {% block body %}
+    {% include "_partials/_bar.html.twig" %}
 <div class="offers-container">
     {% for offer in offers %}
         <div class="offer-container">
@@ -11,5 +16,7 @@
             <p>Salaire : {{ offer.salary }} € annuels</p>
             <p>Lieux : <br/>{{ offer.description }}</p>
         </div>
+
+    {% endfor %}
 </div>
 {% endblock %}

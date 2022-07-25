@@ -16,10 +16,10 @@
             </li>
         {% elseif is_granted('ROLE_RECRUITER') %}
             <li class="sidebar-li">
-                <a class="sidebar-a"  href="#">Profil Entreprise</a>
+                <a class="sidebar-a"  href="{{ path('app_user') }}">Profil Entreprise</a>
             </li>
             <li class="sidebar-li">
-                <a class="sidebar-a"  href="#">Offres publiées</a>
+                <a class="sidebar-a"  href="{{ path('app_recruiter_offers') }}">Offres publiées</a>
             </li>
             <li class="sidebar-li">
                 <a class="sidebar-a"  href="{{ path('app_recruiter_new_offer') }}">Ajouter une offre</a>

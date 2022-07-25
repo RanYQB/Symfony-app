@@ -10,6 +10,7 @@ use App\Form\CandidateType;
 use App\Form\OfferType;
 use App\Form\RecruiterType;
 use App\Repository\CandidateRepository;
+use App\Repository\OfferRepository;
 use App\Repository\RecruiterRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -68,7 +69,6 @@ class UserController extends AbstractController
 
         return $this->render('user/user.html.twig', $options);
     }
-
 
 
 
@@ -153,5 +153,23 @@ class UserController extends AbstractController
     ]);
     }
 
+
+    #[Route('/recruteur/offres-publiees', name: 'app_recruiter_offers')]
+    public function showOffers(OfferRepository $offerRepository): Response
+    {
+        if($this->isGranted('ROLE_RECRUITER'))
+        {
+            $offers = $offerRepository->findBy(['recruiter' => $this->getUser()->getRecruiter()], ['created_at' => 'ASC']);
+        }
+        else
+        {
+            $this->redirectToRoute('app-user');
+        }
+
+        return $this->render('user/show_offers.html.twig', [
+            'offers' => $offers
+        ]);
+
+    }
 
 }

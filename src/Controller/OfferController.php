@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Repository\OfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,10 +13,7 @@ class OfferController extends AbstractController
     #[Route('/offres-d-emploi', name: 'app_offer')]
     public function index(OfferRepository $offerRepository): Response
     {
-        $offer = $offerRepository->findBy(
-            ['is_published' => 'true'],
-            ['created_at' => 'ASC']
-        );
+        $offer = $offerRepository->findBy(['isPublished' => true], ['created_at' => 'ASC']);
 
         return $this->render('offer/offer.html.twig', [
             'offers' => $offer,

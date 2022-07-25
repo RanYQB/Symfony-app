@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RH Conseil - offres publiées{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/user.css')}}">
+{% endblock %}
+
+{% block body %}
+    {% include "_partials/_bar.html.twig" %}
+    {% include "_partials/_side_bar.html.twig" %}
+    {% if app.user %}
+        {% if is_granted('ROLE_RECRUITER') %}
+            <div class="profil-container">
+                {% for annonce in offers %}
+                    <div>
+                    <h3>{{ annonce.title }}</h3>
+                    <p>Lieux : {{ annonce.location }}</p>
+                    <p>Salaire : {{ annonce.salary }} € annuels</p>
+                    <p>Lieux : <br/>{{ annonce.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% else %}
+    {% endif %}
+{% endblock%}
