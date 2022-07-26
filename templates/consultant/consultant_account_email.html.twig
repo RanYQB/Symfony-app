@@ -1,0 +1,3 @@
+<h1>Bonjour {{ consultant.firstname }}</h1>
+<p>Suivez ce lien pour activer votre compte et définir un mot de passe.</p>
+<a href="{{ absolute_url(path('app_consultant_profile', {token : token}))}}" class="btn btn-success">Aller sur le site</a>

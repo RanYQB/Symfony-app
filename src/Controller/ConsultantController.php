@@ -15,4 +15,11 @@ class ConsultantController extends AbstractController
             'controller_name' => 'ConsultantController',
         ]);
     }
+
+    #[Route('/consultant/definir-mot-de-passe/{token}', name: 'app_consultant_profile')]
+    public function profile($token): Response
+    {
+        return dd($token);
+    }
+
 }

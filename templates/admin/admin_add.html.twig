@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RH Conseil - Nouveau consultant{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/adminadd.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/script.js') }}" defer> </script>
+{% endblock %}
+
+
+{% block body %}
+    {% include '_partials/_admin_bar.html.twig' %}
+    <div class="page-container">
+        <div class="main-container">
+            <h1>Créer un compte</h1>
+            {{ form_start(consultantForm) }}
+            {{ form_row(consultantForm.lastname) }}
+            {{ form_row(consultantForm.firstname) }}
+            {{ form_row(consultantForm.email) }}
+            <button type="submit" class="btn btn-success">Valider</button>
+            {{ form_end(consultantForm) }}
+
+        </div>
+    </div>
+
+
+{% endblock %}

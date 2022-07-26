@@ -35,6 +35,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(targetEntity: Recruiter::class, cascade: ['persist', 'remove'])]
     private $Recruiter;
 
+    #[ORM\OneToOne(mappedBy: 'User', targetEntity: Consultant::class, cascade: ['persist', 'remove'])]
+    private $consultant;
+
     public function __construct()
     {
         $this->created_at = new \DateTimeImmutable();
@@ -130,6 +133,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setRecruiter(?Recruiter $Recruiter): self
     {
         $this->Recruiter = $Recruiter;
+
+        return $this;
+    }
+
+    public function getConsultant(): ?Consultant
+    {
+        return $this->consultant;
+    }
+
+    public function setConsultant(Consultant $consultant): self
+    {
+        // set the owning side of the relation if necessary
+        if ($consultant->getUser() !== $this) {
+            $consultant->setUser($this);
+        }
+
+        $this->consultant = $consultant;
 
         return $this;
     }
