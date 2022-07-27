@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Consultant;
 use App\Form\ConsultantType;
+use App\Repository\ConsultantRepository;
 use App\Services\JWTService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -19,10 +20,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     #[Route('/admin', name: 'app_admin')]
-    public function index(): Response
+    public function index(ConsultantRepository $consultantRepository): Response
     {
+
         return $this->render('admin/admin.html.twig', [
-            'controller_name' => 'AdminController',
+            'consultants' => $consultantRepository->findBy([], ['lastname'=>'asc'])
         ]);
     }
 

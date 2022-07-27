@@ -1,0 +1,33 @@
+.consultant-container{
+
+    position: absolute;
+    margin-top: 20vh;
+    left: 10vw;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+}
+
+table{
+    width: 75vw;
+}
+
+.table-cell{
+    width: 20vw;
+}
+
+.active-btn{
+    width: 10vw;
+}
+
+.number{
+    width: 10vw;
+}
+
+.buttons-div{
+    width: 20vw;
+}
+
+.active-btn, .table-cell{
+
+}

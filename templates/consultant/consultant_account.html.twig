@@ -1,0 +1,15 @@
+{% block body %}
+    <div class="page-container">
+        <div class="main-container">
+            <h1>Créer un compte</h1>
+            {{ consultant.email }}
+            {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            {{ form_row(registrationForm.agreeTerms) }}
+            <button type="submit" class="btn">Register</button>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}

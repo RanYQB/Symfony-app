@@ -1,7 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}RH Conseil - Administration{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}">
+{% endblock %}
 
 {% block body %}
     {% include '_partials/_admin_bar.html.twig' %}
+
+    <main>
+        <div class="consultant-container">
+
+            <table class="table px-5">
+                <caption class="caption-top">Liste des consultants</caption>
+                <thead class="table-dark table-lg">
+                <tr>
+                    {% set i = 0 %}
+                    <th class="" scope="col">#</th>
+                    <th class="" scope="col">Nom</th>
+                    <th class="" scope="col">Prénom</th>
+                    <th class="" scope="col">E-mail</th>
+                    <th class="" scope="col">Actif</th>
+                    <th class="" scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for consultant in consultants %}
+                <tr>
+                    <td class="number">{%set i = i + 1 %} {{ i}} </td>
+                    <td class="table-cell align-middle">{{ consultant.lastname }}</td>
+                    <td class="table-cell align-middle">{{ consultant.firstname }}</td>
+                    <td class="table-cell align-middle">{{ consultant.email }}</td>
+                    <td class="active-btn align-middle">{{ consultant.isActive }}</td>
+                    <td class="buttons-div align-middle"><div>
+                            <button class=" align-middle btn btn-primary">Enregistrer</button>
+                            <button class=" align-middle btn btn-danger">Supprimer</button>
+                        </div></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+    </main>
 {% endblock %}

@@ -22,7 +22,7 @@ class Consultant
     #[ORM\Column(type: 'boolean')]
     private $is_active;
 
-    #[ORM\OneToOne(inversedBy: 'consultant', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: true)]
     private $User;
 
